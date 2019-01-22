@@ -1,11 +1,7 @@
 <nav class="mb-5">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a routerLink="/">Home</a>
-      </li>
-      <li class="breadcrumb-item">
-          <a routerLink="/categories">Categorias</a>
-      </li>
+      <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+      <li class="breadcrumb-item"><a routerLink="/categories">Categorias</a></li>
       <li class="breadcrumb-item active">Formulário de Categoria</li>
     </ol>
   </nav>
@@ -22,3 +18,26 @@
       </a>
     </div>
   </div>
+
+  <form >
+    <div class="card">
+      <div class="card-header">
+        Informações sobre as categorias
+      </div>
+
+      <div class="card-body">
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="name">Nome</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="form-grou col-md-8">
+            <label for="description">Descrição</label>
+            <input type="text" class="form-control" id="description">
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg float-right mt-3">Salvar</button>
+  </form>
