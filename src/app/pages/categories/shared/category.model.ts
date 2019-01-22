@@ -4,4 +4,5 @@ export class Category {
         public name: String,
         public description: String
     ) { }
+    
 }
