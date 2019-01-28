@@ -39,9 +39,16 @@
           <label for="description">Descrição</label>
           <input type="text" class="form-control" id="description" formControlName="description">
         </div>
-
       </div>
     </div>
   </div>
+
+  <div class="alert alert-danger mt-4" *ngIf="serverErrorMessagens">
+    <strong>Error no servidor.</strong>
+    <ul>
+      <li *ngFor="let error of serverErrorMessagens">{{error}}</li>
+    </ul>
+  </div>
+
   <button [disabled]="submittingForm || categoryForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">Salvar</button>
 </form>
