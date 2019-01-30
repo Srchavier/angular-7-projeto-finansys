@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EntriesRoutingModule } from './entries-routing.module';
 
 import { EntryListComponent } from './entry-list/EntryListComponent';
+import { EntryFormComponent } from './entry-form/entry-form.component';
 
 import { CalendarModule } from 'primeng/calendar';
 import { IMaskModule } from 'angular-imask';
@@ -17,6 +18,6 @@ import { IMaskModule } from 'angular-imask';
     CalendarModule,
     IMaskModule
   ],
-  declarations: [EntryListComponent]
+  declarations: [EntryListComponent, EntryFormComponent]
 })
 export class EntriesModule { }

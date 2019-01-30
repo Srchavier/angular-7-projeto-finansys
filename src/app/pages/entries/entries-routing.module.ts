@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { EntryListComponent } from "./entry-list/EntryListComponent";
+import { EntryListComponent } from './entry-list/EntryListComponent';
+import { EntryFormComponent } from './entry-form/entry-form.component';
 
 const routes: Routes = [
   { path: '', component: EntryListComponent },
-
+  { path: 'new', component: EntryFormComponent },
+  { path: ':id/edit', component: EntryFormComponent },
 ];
 
 @NgModule({
