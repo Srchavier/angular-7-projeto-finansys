@@ -3,7 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Route, Router } from '@angular/router';
 
 import { Entry } from '../shared/entry.model';
+import { Category } from '../../categories/shared/category.model';
 import { EntryService } from '../shared/entry.service';
+import { CategoryService } from './../../categories/shared/category.service';
 
 import { switchMap } from 'rxjs/operators';
 
@@ -22,17 +24,43 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   serverErrorMessagens: string[] = null;
   submittingForm: Boolean = false;
   entry: Entry = new Entry();
+  categories: Array<Category>;
+
+  imaskConfig = {
+    mask: Number,
+    scale: 2,
+    thousandsSeparator: '',
+    padFractionalZeros: true,
+    normalizeZeros: true,
+    radix: ','
+  };
+
+  ptBR = {
+    firstDayOfWeek: 0,
+    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+    dayNamesMin: ['Do', 'Se', 'Te', 'Qu', 'Qu', 'Se', 'Sa'],
+    monthNames: [
+      'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho',
+      'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+    ],
+    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    today: 'Hoje',
+    clear: 'Limpar'
+  };
 
   constructor(
     private entryService: EntryService,
     private route: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.setCurrentAction();
     this.builderEntryForm();
     this.loadEntry();
+    this.loadCategoreis();
   }
 
   ngAfterContentChecked(): void {
@@ -46,6 +74,17 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     } else {
       this.updateEntry();
     }
+  }
+
+  get typeOptions(): Array<any> {
+    return Object.entries(Entry.types).map(
+      ([value, text]) => {
+        return {
+          text: text,
+          value: value
+        };
+      }
+    );
   }
 
   /* PRIVATE METHODS */
@@ -63,10 +102,10 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
       id: [null],
       name: [null, [Validators.required, Validators.minLength(2)]],
       description: [null],
-      type: [null, [Validators.required]],
+      type: ['expense', [Validators.required]],
       amount: [null, [Validators.required]],
       date: [null, [Validators.required]],
-      paid: [null, [Validators.required]],
+      paid: [true, [Validators.required]],
       categoryId: [null, [Validators.required]]
     });
   }
@@ -85,6 +124,11 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     }
   }
 
+  private loadCategoreis(): any {
+    this.categoryService.getAll().subscribe(
+      categories => this.categories = categories
+    );
+  }
   private setPageTitle(): any {
     if (this.currentAction === 'new') {
       this.pageTitle = 'Cadastro de Novo Lançamento';
