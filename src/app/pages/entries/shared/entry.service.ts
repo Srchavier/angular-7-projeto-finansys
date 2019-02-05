@@ -71,8 +71,6 @@ export class EntryService {
     );
   }
 
-
-
   // PRIVATE METHODS
 
   private jsonDataToEntries(jsonData: any[]): Entry[] {
