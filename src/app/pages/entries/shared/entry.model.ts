@@ -16,7 +16,6 @@ export class Entry  extends BaseResourceModel {
     super();
   }
 
-
   static types = {
     expense: 'Despesa',
     revenue: 'Receita'
