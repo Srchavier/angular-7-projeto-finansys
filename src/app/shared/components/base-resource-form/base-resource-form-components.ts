@@ -34,7 +34,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
 
     ngOnInit() {
         this.setCurrentAction();
-        // this.builderResourceForm();
+        this.builderResourceForm();
         this.loadResource();
     }
 
@@ -92,7 +92,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
     }
 
     protected createResource() {
-        const resource: T = this.jsonDataToResourceFn(this.resourceForm.value.bind(this));
+        const resource: T = this.jsonDataToResourceFn(this.resourceForm.value);
         this.resourceService.create(resource)
             .subscribe(
                 // tslint:disable-next-line:no-shadowed-variable
@@ -102,7 +102,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
     }
 
     protected updateResource() {
-        const resource: T = this.jsonDataToResourceFn(this.resourceForm.value.bind(this));
+        const resource: T = this.jsonDataToResourceFn(this.resourceForm.value);
         this.resourceService.update(resource)
             .subscribe(
                 newResource => this.actionsForSuccess(newResource),
