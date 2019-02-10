@@ -1,12 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataBase } from './in-memory-database';
+import { CoreModule } from './core/core.module';
 
 
 @NgModule({
@@ -14,10 +11,8 @@ import { InMemoryDataBase } from './in-memory-database';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    CoreModule,
     AppRoutingModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot( InMemoryDataBase )
   ],
   providers: [],
   bootstrap: [AppComponent]
