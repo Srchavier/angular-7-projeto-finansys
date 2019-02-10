@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { CalendarModule } from 'primeng/calendar';
 import { IMaskModule } from 'angular-imask';
+import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
 
 @NgModule({
   imports: [
@@ -12,12 +13,16 @@ import { IMaskModule } from 'angular-imask';
     CalendarModule,
     IMaskModule
   ],
-  declarations: [],
+  declarations: [
+    BreadCrumbComponent
+  ],
   exports: [
     CommonModule,
     ReactiveFormsModule,
     CalendarModule,
-    IMaskModule
+    IMaskModule,
+
+    BreadCrumbComponent
   ]
 })
 export class SharedModule { }
