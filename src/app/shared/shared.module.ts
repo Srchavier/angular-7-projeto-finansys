@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CalendarModule } from 'primeng/calendar';
 import { IMaskModule } from 'angular-imask';
 import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.compon
     RouterModule,
   ],
   declarations: [
-    BreadCrumbComponent
+    BreadCrumbComponent,
+    PageHeaderComponent
   ],
   exports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.compon
     IMaskModule,
     RouterModule,
 
-    BreadCrumbComponent
+    BreadCrumbComponent,
+    PageHeaderComponent
   ]
 })
 export class SharedModule { }
